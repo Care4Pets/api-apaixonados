@@ -19,6 +19,17 @@ class PetController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        var_dump($request->json()->all());
+        die();
+        return response()->json();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
