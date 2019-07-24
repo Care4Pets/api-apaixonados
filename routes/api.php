@@ -16,8 +16,12 @@ Route::prefix('v1')->group(function () {
     Route::post('login', 'API\AuthController@login');
     Route::post('register', 'API\AuthController@register');
     Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('/pet/mypets', 'API\PetController@getPetByUser');
+        Route::prefix('pet')->group(function () {
+            Route::post('create', 'API\PetController@create');
+        });
         Route::post('getUser', 'Api\AuthController@getUser');
-        Route::post('/pet/create', 'API\PetController@create');
+
     });
 
 });

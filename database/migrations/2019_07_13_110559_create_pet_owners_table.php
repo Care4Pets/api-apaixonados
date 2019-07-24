@@ -13,7 +13,7 @@ class CreatePetOwnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('pet_owners', function (Blueprint $table) {
+        Schema::create('owners_pet', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('pet_id')->unsigned();
             $table->bigInteger('owner_id')->unsigned();

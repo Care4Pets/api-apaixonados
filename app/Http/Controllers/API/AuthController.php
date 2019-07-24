@@ -15,11 +15,10 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
-            'cellphone' => 'required|regex: /^([0-9]{11,15})$/',
+            'email' => 'required|email|unique',
+            'cellphone' => 'required|regex: /^([0-9]{11,15})$/|unique',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
@@ -30,6 +29,7 @@ class AuthController extends Controller
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] = $user->createToken('AppName')->accessToken;
+        $user->sendEmailVerificationNotification();
         return response()->json(['success' => $success], $this->successStatus);
     }
 

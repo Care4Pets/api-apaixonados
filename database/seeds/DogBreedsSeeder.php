@@ -11,6 +11,15 @@ class DogBreedsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('breeds')->insert([[]]);
+        $breed = new \stdClass();
+        $breed->cientific_group = "SRD";
+        $breed->base_name = "CRAND";
+        $breed->name = "vira-lata";
+        DB::table('breeds')->insert([
+            [
+                'specie_id' => 1,
+                'meta_data' => \json_encode($breed)
+            ]
+        ]);
     }
 }

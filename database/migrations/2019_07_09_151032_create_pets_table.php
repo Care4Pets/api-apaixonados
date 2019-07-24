@@ -20,7 +20,7 @@ class CreatePetsTable extends Migration
             $table->string('name')->index();
             $table->date('birthdate')->nullable()->index();
             $table->json('meta_data')->nullable();
-            $table->text('short_bio');
+            $table->text('short_bio')->nullable();
             $table->foreign('specie_id')->references('id')->on('species');
             $table->foreign('breed_id')->references('id')->on('breeds');
             $table->timestamps();
